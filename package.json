@@ -1,6 +1,6 @@
 {
   "name": "apparts-redux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redux helpers",
   "main": "index.js",
   "scripts": {

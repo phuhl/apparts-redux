@@ -1,8 +1,6 @@
 "use strict";
 
-import * as lang from '../lang';
 import { connect as connect1 } from 'react-redux';
-import * as actions from '../actions';
 
 export default (props, methods) =>
   connect1(

@@ -24,7 +24,7 @@ function throttle(func, wait, options) {
 
 
 let lang, actions;
-const configureStore = (reducers, p_actions, p_lang) => {
+export const configureStore = (reducers, p_actions, p_lang) => {
   lang = p_lang;
   actions = p_actions;
   return loadState()
@@ -51,7 +51,7 @@ const configureStore = (reducers, p_actions, p_lang) => {
     });
 };
 
-export connect = (props, methods) =>
+export const connect = (props, methods) =>
   connect1(
     state => {
       let p = props(state);
@@ -68,5 +68,3 @@ export connect = (props, methods) =>
       });
       return obj;
     });
-
-export default configureStore;
