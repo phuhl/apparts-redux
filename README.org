@@ -1,0 +1,26 @@
+#+TITLE: Redux-Helpers
+#+DATE: [2019-02-07 Thu]
+#+AUTHOR: Philipp Uhl
+
+* Usage
+
+#+CAPTION: =connect=
+#+BEGIN_SRC js
+MyComponent = connect(
+  ({ myStoreSubPart }) => ({ myStoreSubPart }),
+  [ actions.myFunc1
+    actions.myFunc2
+  ])(MyComponent);
+#+END_SRC
+
+#+CAPTION: =configureStore=
+#+BEGIN_SRC js
+  configureStore(reducers, actions, lang)
+    .then(s => {
+      console.log('yay');
+      // do something
+    })
+    .catch(e => {
+      console.log('nope', e);
+    });
+#+END_SRC

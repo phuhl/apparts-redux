@@ -1,0 +1,23 @@
+{
+  "name": "apparts-redux",
+  "version": "1.0.0",
+  "description": "Redux helpers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@ph-uhl.com:Apparts/apparts-redux.git"
+  },
+  "keywords": [
+    "apparts",
+    "redux"
+  ],
+  "author": "Philipp Uhl",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "react-native": "^0.58.4",
+    "redux": "^4.0.1"
+  }
+}
