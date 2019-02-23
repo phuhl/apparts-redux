@@ -1,24 +1,14 @@
-export default store => next => action => {
-  let syncActivityFinished = false;
-  let actionQueue = [];
-
-  function flushQueue() {
-    actionQueue.forEach(a => store.dispatch(a)); // flush queue
-    actionQueue = [];
-  }
-
-  function asyncDispatch(asyncAction) {
-    actionQueue = actionQueue.concat([asyncAction]);
-
-    if (syncActivityFinished) {
-      flushQueue();
+function createThunkMiddleware(extraArgument) {
+  return ({ dispatch, getState }) => next => action => {
+    if (typeof action === 'function') {
+      return action(dispatch, getState, extraArgument);
     }
-  }
 
-  const actionWithAsyncDispatch =
-      Object.assign({}, action, { asyncDispatch });
+    return next(action);
+  };
+}
 
-  next(actionWithAsyncDispatch);
-  syncActivityFinished = true;
-  flushQueue();
-};
+const thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+export default thunk;
