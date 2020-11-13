@@ -32,6 +32,8 @@ A store *must* export an object with:
   for persisting. That means, the store will then not be persisted.
 
 
+*** Filestructure
+
 A store should be in a subdirectory of the =store.js= file. A sensible
 filestructure could be:
 
@@ -49,6 +51,7 @@ filestructure could be:
 Small stores can be put in a single =index.js= file, larger stores
 should be split into separate files for actions and reducers.
 
+*** Single file store
 Below is an example for the =index.js= of a store:
 
 #+BEGIN_SRC js
@@ -81,7 +84,7 @@ export default {
 };
 #+END_SRC
 
-
+*** Multi file store
 
 An example for the =index.js= of a store, that is split into multiple
 files:
