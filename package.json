@@ -1,14 +1,14 @@
 {
-  "name": "apparts-redux",
-  "version": "1.1.0",
-  "description": "Redux helpers",
+  "name": "@apparts/redux",
+  "version": "2.0.1",
+  "description": "Apparts Redux Boilerplate",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@ph-uhl.com:Apparts/apparts-redux.git"
+    "url": "git@github.com:phuhl/apparts-redux.git"
   },
   "keywords": [
     "apparts",
@@ -17,7 +17,8 @@
   "author": "Philipp Uhl",
   "license": "UNLICENSED",
   "dependencies": {
-    "react-native": "^0.58.4",
-    "redux": "^4.0.1"
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   }
 }

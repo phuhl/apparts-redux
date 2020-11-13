@@ -1,26 +1,96 @@
-#+TITLE: Redux-Helpers
+#+TITLE: Redux-Boilerplate
 #+DATE: [2019-02-07 Thu]
 #+AUTHOR: Philipp Uhl
 
 * Usage
 
-#+CAPTION: =connect=
+
+Install =@apparts/redux=, create a file =store.js=:
+
 #+BEGIN_SRC js
-MyComponent = connect(
-  ({ myStoreSubPart }) => ({ myStoreSubPart }),
-  [ actions.myFunc1
-    actions.myFunc2
-  ])(MyComponent);
+import configureStore from "@apparts/redux";
+
+import firststore from "./firststore";
+import secondstore from "./secondstore";
+// ...
+
+const { store, persistor, types } = configureStore({ firststore, secondstore });
+
+export { persistor };
+export default store;
 #+END_SRC
 
-#+CAPTION: =configureStore=
+** Stores
+
+A store *must* export an object with:
+- =reducer <function>= :: A function that takes the action-types as an
+  argument and returns the reducer.
+- =actionNames <array>= :: An array with all names of action-types
+  of that store.
+- =blacklisted <?boolean>= :: /Optionally/, you can specify a
+  =blacklisted= value. If true, the store will be put in the blacklist
+  for persisting. That means, the store will then not be persisted.
+
+
+A store should be in a subdirectory of the =store.js= file. A sensible
+filestructure could be:
+
+- src
+  - redux
+    - store.js
+    - firststore
+      - index.js
+    - secondstore
+      - index.js
+      - actions.js
+      - reducer.js
+  - ...rest of your project
+
+Small stores can be put in a single =index.js= file, larger stores
+should be split into separate files for actions and reducers.
+
+Below is an example for the =index.js= of a store:
+
 #+BEGIN_SRC js
-  configureStore(reducers, actions, lang)
-    .then(s => {
-      console.log('yay');
-      // do something
-    })
-    .catch(e => {
-      console.log('nope', e);
-    });
+export const setOffline = () => ({
+  type: "SET_NETWORK",
+  state: false,
+});
+
+export const setOnline = () => ({
+  type: "SET_NETWORK",
+  state: true,
+});
+
+const actionNames = [setOffline().type];
+
+const defaultState = true;
+const reducer = (types) => (state = defaultState, action = {}) => {
+  switch (action.type) {
+    case types.SET_NETWORK.name:
+      return action.state;
+    default:
+      return state;
+  }
+};
+
+export default {
+  reducer,
+  actionNames,
+  blacklisted: true,
+};
+#+END_SRC
+
+
+
+An example for the =index.js= of a store, that is split into multiple
+files:
+#+BEGIN_SRC js
+import reducer from "./reducer";
+import actionNames from "./actions";
+export * from "./actions";
+export default {
+  reducer,
+  actionNames,
+};
 #+END_SRC
