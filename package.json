@@ -2,9 +2,12 @@
   "name": "@apparts/redux",
   "version": "2.0.1",
   "description": "Apparts Redux Boilerplate",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf lib dist",
+    "build": "rollup -c",
+    "buildWatch": "rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,17 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.13.10",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-runtime": "^6.26.0",
+    "eslint": "^7.21.0",
+    "eslint-plugin-react": "^7.22.0",
+    "rollup": "^1.32.1",
+    "rollup-plugin-babel": "^4.4.0"
   }
 }
